@@ -16,7 +16,13 @@ struct binary_tree_s
     struct binary_tree_s *left;
     struct binary_tree_s *right;
 };
-
+/*main funcyiont ---> Basic Binary Tree <-- */
 typedef struct binary_tree_s binary_tree_t;
+
+/* ---> Binary Search Tree <---> AVL Tree <---> Max Binary Heap <---*/
+typedef struct binary_tree_s bst_t;
+typedef struct binary_tree_s avl_t;
+typedef struct binary_tree_s heap_t;
+
 
 #endif
