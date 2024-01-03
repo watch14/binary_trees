@@ -7,10 +7,9 @@
  *
  * Return: A pointer to the lowest common ancestor node, or NULL if none found.
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
-		const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
 {
-	binary_tree_t *ancestor = (binary_tree_t *)first;
+	const binary_tree_t *tmp = second;
 
 	if (first == NULL || second == NULL)
 		return (NULL);
@@ -18,14 +17,15 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (first == second)
 		return ((binary_tree_t *)first);
 
-	while (ancestor != NULL)
+	while (first != NULL)
 	{
-		if (ancestor == second ||
-				(ancestor->left == second || ancestor->right == second) ||
-				(ancestor->parent == second && ancestor->parent != NULL))
-			return (ancestor);
-
-		ancestor = ancestor->parent;
+		while (tmp != NULL)
+		{
+			if (first == tmp)
+				return ((binary_tree_t *)first);
+			tmp = tmp->parent;
+		}
+		first = first->parent;
 	}
 
 	return (NULL);
