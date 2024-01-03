@@ -8,12 +8,13 @@
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
+	int front = 0, rear = 0;
+	int null_found = 0;
+
 	if (tree == NULL)
 		return (0);
 
 	binary_tree_t **queue = NULL;
-	int front = 0, rear = 0;
-	int null_found = 0;
 
 	queue = malloc(sizeof(binary_tree_t *) * 1024);
 
