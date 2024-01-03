@@ -20,34 +20,13 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 
 	while (ancestor != NULL)
 	{
-		if (binary_tree_is_descendant(ancestor, second))
+		if (ancestor == second ||
+				(ancestor->left == second || ancestor->right == second) ||
+				(ancestor->parent == second && ancestor->parent != NULL))
 			return (ancestor);
 
 		ancestor = ancestor->parent;
 	}
 
 	return (NULL);
-}
-
-/**
- * binary_tree_is_descendant - Checks if a node is a
- * descendant of another node.
- * @ancestor: The potential ancestor node.
- * @node: The node to check for descendant.
- *
- * Return: 1 if node is a descendant, 0 otherwise.
- */
-int binary_tree_is_descendant(const binary_tree_t *ancestor,
-		const binary_tree_t *node)
-{
-	int left_descendant;
-	int right_descendant;
-
-	if (ancestor == NULL || node == NULL)
-		return (0);
-
-	left_descendant = binary_tree_is_descendant(ancestor, node->left);
-	right_descendant = binary_tree_is_descendant(ancestor, node->right);
-
-	return (left_descendant || right_descendant || (ancestor == node));
 }
